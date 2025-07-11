@@ -20,15 +20,29 @@ jobs:
         with:
           node-version: 22
             
-      - name: Show system
-        run: |
-          echo "Load average"
-          uptime
+      - name: Start collecting load data
+        run: vmstat 10 90 > vmstat.log &
 
       - name: Install dependencies
         run: npm ci
       - name: Start testing!
         run: npm test
+
+      - name: Show system info
+        run: |
+          echo "RAM:"
+          free -h
+          echo "CPU cores:"
+          nproc
+      - name: Show system load - uptime
+        run: |
+          echo "Load average:"
+          uptime
+      - name: Show system load - 15min 
+        run: |
+          echo "Load average:"
+          cat vmstat.log
+
   deploy:
     runs-on: ubuntu-latest
     steps:
