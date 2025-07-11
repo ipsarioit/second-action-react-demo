@@ -32,6 +32,8 @@ jobs:
         run: |
           echo "RAM:"
           free -h
+          echo "CPU model:"
+          lscpu | grep model
           echo "CPU cores:"
           nproc
       - name: Show system load - uptime
