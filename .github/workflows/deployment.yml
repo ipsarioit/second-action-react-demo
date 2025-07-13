@@ -7,13 +7,6 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-            
-      - name: Get system resources
-        run: |
-          echo "RAM":
-          free -h
-          echo "CPU":
-          nproc
 
       - name: Install NodeJS
         uses: actions/setup-node@v3
@@ -32,8 +25,6 @@ jobs:
         run: |
           echo "RAM:"
           free -h
-          echo "CPU model:"
-          lscpu | grep model
           echo "CPU cores:"
           nproc
       - name: Show system load - uptime
